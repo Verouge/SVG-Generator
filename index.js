@@ -17,8 +17,10 @@ const isValidColor = (input) => {
   return ctx.fillStyle !== "invalidcolor"; // If the color is valid, fillStyle would have been changed
 };
 
+// Function to generate SVG content based on user input
 const generateSVG = (text, textColor, shapeType, shapeColor) => {
   let shape;
+  // Depending on the chosen shape, create the respective shape object
   switch (shapeType) {
     case "triangle":
       shape = new Triangle(shapeColor);
@@ -33,6 +35,7 @@ const generateSVG = (text, textColor, shapeType, shapeColor) => {
       throw new Error("Invalid shape type");
   }
 
+  // Return the full SVG string with both the shape and the text
   return `
     <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         ${shape.toSVG()}
@@ -46,7 +49,7 @@ inquirer
       type: "input",
       name: "text",
       message: "Enter a text (up to three characters):",
-      validate: (input) => input.length <= 3,
+      validate: (input) => input.length <= 3, // Ensure input is 3 characters or less
     },
     {
       type: "input",
@@ -55,7 +58,7 @@ inquirer
       validate: (input) => {
         if (isValidColor(input)) return true;
         return "Please enter a valid color keyword (like 'red') or a hexadecimal color (like '#F00' or '#FF0000').";
-      },
+      }, // Validate input using the isValidColor function
     },
     {
       type: "list",
@@ -70,17 +73,18 @@ inquirer
       validate: (input) => {
         if (isValidColor(input)) return true;
         return "Please enter a valid color keyword (like 'red') or a hexadecimal color (like '#F00' or '#FF0000').";
-      },
+      }, // Validate input using the isValidColor function
     },
   ])
   .then((answers) => {
+    // Generate the SVG based on user answers
     const svgContent = generateSVG(
       answers.text,
       answers.textColor,
       answers.shape,
       answers.shapeColor
     );
-
+    // If SVG generation was successful, write it to a file
     if (svgContent) {
       fs.writeFileSync("logo.svg", svgContent);
       console.log("Generated logo.svg");

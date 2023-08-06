@@ -37,7 +37,6 @@ inquirer
       type: "input",
       name: "textColor",
       message: "Enter the text color (color keyword or hexadecimal):",
-      // Add validation for color keyword or hexadecimal
     },
     {
       type: "list",
@@ -49,7 +48,6 @@ inquirer
       type: "input",
       name: "shapeColor",
       message: "Enter the shape color (color keyword or hexadecimal):",
-      // Add validation for color keyword or hexadecimal
     },
   ])
   .then((answers) => {

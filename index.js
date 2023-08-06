@@ -25,6 +25,27 @@ const generateSVG = (text, textColor, shapeType, shapeColor) => {
     </svg>`;
 };
 
+const isValidColor = (input) => {
+  // Define a basic set of color keywords.
+  const keywords = [
+    "red",
+    "green",
+    "blue",
+    "yellow",
+    "orange",
+    "purple",
+    "pink",
+    "cyan",
+  ];
+
+  // Check if the input matches any of the keywords.
+  if (keywords.includes(input.toLowerCase())) return true;
+
+  // Check if the input is a valid hexadecimal color.
+  const hexPattern = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+  return hexPattern.test(input);
+};
+
 inquirer
   .prompt([
     {
@@ -37,6 +58,10 @@ inquirer
       type: "input",
       name: "textColor",
       message: "Enter the text color (color keyword or hexadecimal):",
+      validate: (input) => {
+        if (isValidColor(input)) return true;
+        return "Please enter a valid color keyword (like 'red') or a hexadecimal color (like '#F00' or '#FF0000').";
+      },
     },
     {
       type: "list",
@@ -48,6 +73,10 @@ inquirer
       type: "input",
       name: "shapeColor",
       message: "Enter the shape color (color keyword or hexadecimal):",
+      validate: (input) => {
+        if (isValidColor(input)) return true;
+        return "Please enter a valid color keyword (like 'red') or a hexadecimal color (like '#F00' or '#FF0000').";
+      },
     },
   ])
   .then((answers) => {

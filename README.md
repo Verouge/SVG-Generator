@@ -7,7 +7,7 @@
 
 ## Description
 
-This project aims to create a command-line application that generates a high-quality, professional README.md file for a given software repository. The application accepts user input to collect information about the project, including the project title, description, installation instructions, usage information, contribution guidelines, application type, chosen license, GitHub username, and email address. Based on this input, the application generates a README.md file with sections such as Description, Table of Contents, Installation, Usage, License, Contributing and Questions.
+This project aspires to design a command-line application, the Custom Logo SVG Generator, to enable users to craft simple, personalized SVG logos swiftly. Through a series of prompts, the application collects user preferences like a text of up to three characters, its desired color (either via a keyword or a hexadecimal value), a choice of shape (circle, triangle, or square), and the respective shape's color. Harnessing these inputs, the program then produces an SVG file named logo.svg. Upon successful generation, users receive a confirmation "Generated logo.svg" in the command line. When visualized in any browser, the logo manifests as a 300x200 pixel image that perfectly mirrors the specified attributes, serving as a quick and efficient tool for immediate logo design necessities.
 
 ## Table of Contents
 

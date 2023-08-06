@@ -1,21 +1,7 @@
 const inquirer = require("inquirer");
 const { Triangle, Circle, Square } = require("./lib/shapes");
 const fs = require("fs");
-const { createCanvas } = require("canvas");
-
-// Validate color function
-const isValidColor = (input) => {
-  // Check if the input is a valid hexadecimal color.
-  const hexPattern = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
-  if (hexPattern.test(input)) return true;
-
-  // Check using a canvas if the input is a valid color name.
-  const canvas = createCanvas(10, 10);
-  const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "invalidcolor"; // Initialize with an invalid value
-  ctx.fillStyle = input; // Try to assign the user's input
-  return ctx.fillStyle !== "invalidcolor"; // If the color is valid, fillStyle would have been changed
-};
+const isValidColor = require("./lib/colorValidation");
 
 // Function to generate SVG content based on user input
 const generateSVG = (text, textColor, shapeType, shapeColor) => {
